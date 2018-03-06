@@ -12,9 +12,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
-public class ConsoleDeveloperViewImpl {
+class ConsoleDeveloperViewImpl {
     private int choice = 0;
     private String firstName;
     private String lastName;
@@ -24,7 +25,7 @@ public class ConsoleDeveloperViewImpl {
     private BufferedReader in;
     private DeveloperController developerController;
 
-    public ConsoleDeveloperViewImpl() {
+    ConsoleDeveloperViewImpl() {
         developerController = new HibernateDeveloperController(new DeveloperServiceImpl(new HibernateDeveloperDAOImpl()));
 
         System.out.println("What do you want to do with Developer?\n" +
@@ -80,8 +81,8 @@ public class ConsoleDeveloperViewImpl {
         } catch (IOException e) {
             e.printStackTrace();
         }
-            developer = developerController.getDeveloperByName(firstName, lastName);
-            System.out.println(developer);
+        developer = developerController.getDeveloperByName(firstName, lastName);
+        System.out.println(developer);
     }
 
     private void create() {
@@ -96,7 +97,7 @@ public class ConsoleDeveloperViewImpl {
             String line = in.readLine();
             salary = new BigDecimal(line);
 
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -220,7 +221,7 @@ public class ConsoleDeveloperViewImpl {
             for (Skill skill : developer.getSet()) {
                 System.out.println(skill.getName());
             }
-            System.out.println("Enter '1' to delete all skills");
+            System.out.println("Enter '1' to delete skills OR \"0\" to skip this option");
             int choice2 = 0;
             try {
                 choice2 = Integer.parseInt(in.readLine());
@@ -230,10 +231,10 @@ public class ConsoleDeveloperViewImpl {
                 e.printStackTrace();
             }
             if (choice2 == 1) {
-                developerController.deleteSkillsFromDev(developer.getId());
+                developer.getSet().removeAll(developer.getSet());
             }
             //add new skills
-            System.out.print("Please enter developer's skill's split by ',' and press 'Enter' OR \"0\" to exit: ");
+            System.out.print("Please enter new developer's skill's split by ',' and press 'Enter' OR \"0\" to exit: ");
             try {
                 String newSkills = in.readLine();
 

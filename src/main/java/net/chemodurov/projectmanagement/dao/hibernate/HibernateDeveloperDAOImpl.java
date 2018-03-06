@@ -3,10 +3,7 @@ package net.chemodurov.projectmanagement.dao.hibernate;
 import net.chemodurov.projectmanagement.dao.DeveloperDAO;
 import net.chemodurov.projectmanagement.model.Developer;
 import net.chemodurov.projectmanagement.model.Skill;
-import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
@@ -23,7 +20,6 @@ public class HibernateDeveloperDAOImpl implements DeveloperDAO {
         sessionFactory = new Configuration().configure().buildSessionFactory();
     }
 
-    @Transactional
     @Override
     public Developer getByName(String firstName, String lastName) {
         Developer developer = null;
@@ -36,7 +32,6 @@ public class HibernateDeveloperDAOImpl implements DeveloperDAO {
         return developer;
     }
 
-    @Transactional
     @Override
     public Skill getSkillByName(String name) {
         session = sessionFactory.openSession();
@@ -49,21 +44,20 @@ public class HibernateDeveloperDAOImpl implements DeveloperDAO {
         return skill;
     }
 
-    @Transactional
     @Override
     public void deleteSkillsFromDev(Long id) {
 
     }
 
-    @Transactional
     @Override
     public void insert(Developer developer) {
         session = sessionFactory.openSession();
+        session.beginTransaction();
         session.save(developer);
+        session.flush();
         session.close();
     }
 
-    @Transactional
     @Override
     public Developer getById(Long id) {
         session = sessionFactory.openSession();
@@ -72,19 +66,26 @@ public class HibernateDeveloperDAOImpl implements DeveloperDAO {
         return developer;
     }
 
-    @Transactional
+
     @Override
     public void update(Developer entity) {
-
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(entity);
+        session.flush();
+        session.close();
     }
 
-    @Transactional
     @Override
     public void delete(Long id) {
-
+        session = sessionFactory.openSession();
+        session.beginTransaction();
+        Developer developer = session.get(Developer.class, id);
+        session.delete(developer);
+        session.flush();
+        session.close();
     }
 
-    @Transactional
     @Override
     public Set<Developer> getAll() {
         Set<Developer> developers;

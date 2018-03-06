@@ -62,12 +62,10 @@ public class Developer extends BaseEntity {
         this.specialty = specialty;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "developer_skills",
-            joinColumns = @JoinColumn(name = "dev_id",
-                    referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id")  )
+            joinColumns = @JoinColumn(name = "dev_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
     public Set<Skill> getSet() {
         return set;
     }
