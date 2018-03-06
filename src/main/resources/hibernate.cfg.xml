@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate </property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">jdbc</property>
+        <property name="connection.password">%JDBC_tutorial0</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <!--<property name="show_sql">true</property>-->
+        <!--&lt;!&ndash; Show SQL formatted &ndash;&gt;-->
+        <!--<property name="format_sql">true</property>-->
+
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <mapping class="net.chemodurov.projectmanagement.model.BaseEntity"/>
+        <mapping class="net.chemodurov.projectmanagement.model.Skill"/>
+        <mapping class="net.chemodurov.projectmanagement.model.Developer"/>
+        <mapping class="net.chemodurov.projectmanagement.model.Team"/>
+        <mapping class="net.chemodurov.projectmanagement.model.Project"/>
+        <mapping class="net.chemodurov.projectmanagement.model.Company"/>
+        <mapping class="net.chemodurov.projectmanagement.model.Customer"/>
+
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
