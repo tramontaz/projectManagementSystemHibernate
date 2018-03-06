@@ -6,6 +6,7 @@ import net.chemodurov.projectmanagement.dao.hibernate.HibernateDeveloperDAOImpl;
 import net.chemodurov.projectmanagement.model.Developer;
 import net.chemodurov.projectmanagement.model.Skill;
 import net.chemodurov.projectmanagement.service.implementations.DeveloperServiceImpl;
+import net.chemodurov.projectmanagement.view.View;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-class ConsoleDeveloperViewImpl {
+class ConsoleDeveloperViewImpl implements View {
     private int choice = 0;
     private String firstName;
     private String lastName;
@@ -66,13 +67,13 @@ class ConsoleDeveloperViewImpl {
         }
     }
 
-    private void showAll() {
+    public void showAll() {
         for (Developer d : developerController.getAllDevelopers()) {
             System.out.println(d);
         }
     }
 
-    private void read() {
+    public void read() {
         try {
             System.out.println("Please enter first name of developer which you want: ");
             firstName = in.readLine();
@@ -85,7 +86,7 @@ class ConsoleDeveloperViewImpl {
         System.out.println(developer);
     }
 
-    private void create() {
+    public void create() {
         try {
             System.out.println("Enter the first name of new developer: \t");
             firstName = in.readLine();
@@ -122,7 +123,7 @@ class ConsoleDeveloperViewImpl {
         developerController.addDeveloper(developer);
     }
 
-    private void delete() {
+    public void delete() {
         try {
             System.out.println("Please enter the first name of developer which you want to delete: ");
             firstName = in.readLine();
@@ -157,7 +158,7 @@ class ConsoleDeveloperViewImpl {
         }
     }
 
-    private void update() {
+    public void update() {
         try {
             System.out.println("Please enter the first name of developer which you want to edit: ");
             firstName = in.readLine();

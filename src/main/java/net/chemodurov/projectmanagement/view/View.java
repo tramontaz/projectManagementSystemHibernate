@@ -1,6 +1,6 @@
 package net.chemodurov.projectmanagement.view;
 
-public interface SkillView {
+public interface View {
     void showAll();
 
     void delete();

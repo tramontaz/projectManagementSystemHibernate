@@ -6,20 +6,20 @@ import net.chemodurov.projectmanagement.dao.hibernate.HibernateSkillDAOImpl;
 import net.chemodurov.projectmanagement.model.Skill;
 
 import net.chemodurov.projectmanagement.service.implementations.SkillServiceImpl;
-import net.chemodurov.projectmanagement.view.SkillView;
+import net.chemodurov.projectmanagement.view.View;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ConsoleSkillViewImpl implements SkillView {
+public class ConsoleViewImpl implements View {
     private int choice = 0;
     private String name;
     private Skill skill = null;
     private SkillController skillController;
     private BufferedReader in;
 
-    public ConsoleSkillViewImpl() {
+    public ConsoleViewImpl() {
         skillController = new HibernateSkillControllerImpl(new SkillServiceImpl(new HibernateSkillDAOImpl()));
         in = new BufferedReader(new InputStreamReader(System.in));
 

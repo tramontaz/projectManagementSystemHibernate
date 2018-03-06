@@ -35,7 +35,7 @@ public class ConsoleView {
                 }
                 switch (choice) {
                     case 1:
-                        new ConsoleSkillViewImpl();
+                        new ConsoleViewImpl();
                         break;
                     case 2:
                         new ConsoleDeveloperViewImpl();
