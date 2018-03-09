@@ -7,10 +7,10 @@ import net.chemodurov.projectmanagement.service.DeveloperService;
 
 import java.util.Set;
 
-public class HibernateDeveloperController implements DeveloperController {
+public class HibernateDeveloperControllerImpl implements DeveloperController {
     private DeveloperService developerService;
 
-    public HibernateDeveloperController(DeveloperService developerService) {
+    public HibernateDeveloperControllerImpl(DeveloperService developerService) {
         this.developerService = developerService;
     }
 

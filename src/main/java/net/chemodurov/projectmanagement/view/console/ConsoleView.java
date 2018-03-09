@@ -35,22 +35,22 @@ public class ConsoleView {
                 }
                 switch (choice) {
                     case 1:
-                        new ConsoleViewImpl();
+                        new ConsoleSkillViewImpl();
                         break;
                     case 2:
                         new ConsoleDeveloperViewImpl();
                         break;
                     case 3:
-                        new TeamController();
+                        new ConsoleTeamViewImpl();
                         break;
                     case 4:
-                        new ProjectController();
+                        new ConsoleProjectViewImpl();
                         break;
                     case 5:
-                        new CompanyController();
+                        new ConsoleCompanyViewImp();
                         break;
                     case 6:
-                        new CustomerController();
+                        new ConsoleCustomerViewImpl();
                         break;
                     case 0:
                         System.out.println("Good by!");

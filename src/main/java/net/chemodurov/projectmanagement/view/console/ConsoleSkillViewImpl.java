@@ -12,14 +12,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ConsoleViewImpl implements View {
+public class ConsoleSkillViewImpl implements View {
     private int choice = 0;
     private String name;
     private Skill skill = null;
     private SkillController skillController;
     private BufferedReader in;
 
-    public ConsoleViewImpl() {
+    ConsoleSkillViewImpl() {
         skillController = new HibernateSkillControllerImpl(new SkillServiceImpl(new HibernateSkillDAOImpl()));
         in = new BufferedReader(new InputStreamReader(System.in));
 

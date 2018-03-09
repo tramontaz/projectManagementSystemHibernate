@@ -1,7 +1,7 @@
 package net.chemodurov.projectmanagement.view.console;
 
 import net.chemodurov.projectmanagement.controller.DeveloperController;
-import net.chemodurov.projectmanagement.controller.hibernate_controllers.HibernateDeveloperController;
+import net.chemodurov.projectmanagement.controller.hibernate_controllers.HibernateDeveloperControllerImpl;
 import net.chemodurov.projectmanagement.dao.hibernate.HibernateDeveloperDAOImpl;
 import net.chemodurov.projectmanagement.model.Developer;
 import net.chemodurov.projectmanagement.model.Skill;
@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 class ConsoleDeveloperViewImpl implements View {
@@ -27,7 +26,7 @@ class ConsoleDeveloperViewImpl implements View {
     private DeveloperController developerController;
 
     ConsoleDeveloperViewImpl() {
-        developerController = new HibernateDeveloperController(new DeveloperServiceImpl(new HibernateDeveloperDAOImpl()));
+        developerController = new HibernateDeveloperControllerImpl(new DeveloperServiceImpl(new HibernateDeveloperDAOImpl()));
 
         System.out.println("What do you want to do with Developer?\n" +
                 "1 - Create Developer\t" + "2 - Read Developer\t" + "3 - Update Developer\t" +

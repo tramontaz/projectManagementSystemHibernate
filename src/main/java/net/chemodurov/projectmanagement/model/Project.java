@@ -1,7 +1,10 @@
 package net.chemodurov.projectmanagement.model;
 
+import javax.persistence.*;
 import java.util.Set;
 
+@Entity
+@Table(name = "projects")
 public class Project extends BaseEntity{
     private String name;
     private Set<Team> set;
@@ -11,6 +14,10 @@ public class Project extends BaseEntity{
         this.set = set;
     }
 
+    public Project() {
+    }
+
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -19,6 +26,10 @@ public class Project extends BaseEntity{
         this.name = name;
     }
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "project_teams",
+            joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "team_id"))
     public Set<Team> getSet() {
         return set;
     }
